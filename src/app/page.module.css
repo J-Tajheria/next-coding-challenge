@@ -5,6 +5,7 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
+  border-style: solid;
 }
 
 .description {
@@ -16,6 +17,7 @@
   width: 100%;
   z-index: 2;
   font-family: var(--font-mono);
+  border-style: solid;
 }
 
 .description a {
@@ -163,5 +165,10 @@
 @media (min-width: 701px) and (max-width: 1120px) {
   .grid {
     /* TODO Look up how to make a 2 column list*/
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
+    row-gap: 1em;
+    border-style: solid;
   }
 }
