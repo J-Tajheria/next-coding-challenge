@@ -10,9 +10,12 @@ type Props = {
 export default function Basket({ productName, productQuantity }: Props) {
 
     return (
-        <div className={styles.card}>
+        <div>
             <ul>
-                <li key={productName}>{productName} - Qty: {productQuantity}</li>
+                <li key={productName} className={styles.basketItem}>
+                    <span>{productName}</span>
+                    <span>Qty: {productQuantity}</span>
+                </li>
             </ul>
         </div>
     );

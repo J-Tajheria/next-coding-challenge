@@ -9,6 +9,11 @@ import Basket from '@/app/components/basket'
 export default function Home() {
   const [items, setItems] = useState<{name: string, quantity: number, price: number}[]>([]);
   const [itemCount, setItemCount] = useState<number>(0);
+  const [isVisible, setIsVisible] = useState<Boolean>(false);
+
+  const toggleVisibility = () => {
+    setIsVisible(prevState => !prevState);
+  }
 
   const addToCart = (product: string, productPrice: number) => {
     setItems(prevItems => {
@@ -36,17 +41,25 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
+      <div className={styles.description} >
         <p>
           Michael&apos;s Amazing Web Store
         </p> 
-        <div>
-          <button className={styles.basket}>Basket: {itemCount} items</button>
-          
-          {items.map((item) => (
-            <Basket productName={item.name} productQuantity={item.quantity}/>
-          ))}
-          <p>Total £{basketTotal}</p>
+        
+        <div className={styles.basketWrapper}>
+          <button className={styles.basket} onClick={toggleVisibility}>Basket: {itemCount} items</button>
+          {isVisible && (
+            <div className={styles.basketDropdown}>
+              {items.map((item) => (
+                <Basket
+                  key={item.name}
+                  productName={item.name}
+                  productQuantity={item.quantity}
+                />
+              ))}
+              <p>Total £{basketTotal}</p>
+          </div>
+        )}
         </div>
       </div>
 
