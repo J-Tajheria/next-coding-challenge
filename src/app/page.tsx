@@ -8,12 +8,13 @@ import Basket from '@/app/components/basket'
 
 export default function Home() {
   const [items, setItems] = useState<{name: string, quantity: number, price: number}[]>([]);
-  const [itemCount, setItemCount] = useState<number>(0);
-  const [isVisible, setIsVisible] = useState<Boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const toggleVisibility = () => {
     setIsVisible(prevState => !prevState);
   }
+
+  const totalItemCount = items.reduce((total, item) => total + item.quantity, 0);
 
   const addToCart = (product: string, productPrice: number) => {
     setItems(prevItems => {
@@ -31,8 +32,6 @@ export default function Home() {
         ? updated
         : [...prevItems, {name: product, quantity:1, price: productPrice}]
     });
-  
-    setItemCount((prev) => prev + 1);
   };
 
   const basketTotal = items.reduce((total, item) => {
@@ -47,7 +46,7 @@ export default function Home() {
         </p> 
         
         <div className={styles.basketWrapper}>
-          <button className={styles.basket} onClick={toggleVisibility}>Basket: {itemCount} items</button>
+          <button className={styles.basket} onClick={toggleVisibility}>Basket: {totalItemCount} {totalItemCount === 1 ? 'item' : 'items'}</button>
           {isVisible && (
             <div className={styles.basketDropdown}>
               {items.map((item) => (
