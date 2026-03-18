@@ -16,10 +16,10 @@ export default function Card({ productName, productNamePrice, onAdd }: Props) {
             {/* Product details */}
             <div key={productName}>
                 <h4>{productName}</h4>
-                <p>£{productNamePrice}</p>
+                <p> £{productNamePrice}</p>
             </div>
         {/* Adds this product to the basket when clicked */}
-        <button onClick={() => onAdd(productName, productNamePrice)}>Add to Basket</button>
+        <button className={styles.addToBasket} onClick={() => onAdd(productName, productNamePrice)}>Add to Basket</button>
         </div>
     );
 }

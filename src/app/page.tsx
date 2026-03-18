@@ -70,7 +70,7 @@ export default function Home() {
                   productQuantity={item.quantity}
                 />
               ))}
-               <p>Total £{basketTotal}</p>
+              <p>Total £{basketTotal.toFixed(2)}</p>
             </ul>
           )}
         </div>
